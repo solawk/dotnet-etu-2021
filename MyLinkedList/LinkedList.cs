@@ -17,14 +17,6 @@ namespace MyLinkedList
             _first.SetNext(null);
         }
 
-        private int Clamp(int index)
-        {
-            if (index < 0) index = 0;
-            if (index > _size) index = _size;
-
-            return index;
-        }
-
         public void Print()
         {
             Console.Write("{ ");
@@ -41,7 +33,7 @@ namespace MyLinkedList
         {
             LinkedListMember newMember = new LinkedListMember(data);
 
-            index = Clamp(index);
+            if (index < 0 || index > _size) throw new IndexOutOfRangeException();
 
             if (_size == 0)
             {
@@ -81,7 +73,7 @@ namespace MyLinkedList
 
         public void Remove(int index)
         {
-            if (index < 0 || index >= _size) return;
+            if (index < 0 || index >= _size) throw new IndexOutOfRangeException();
 
             LinkedListMember targetMember = GetMember(index);
 
@@ -124,6 +116,8 @@ namespace MyLinkedList
 
         private LinkedListMember GetMember(int index)
         {
+            if (index < 0 || index >= _size) throw new IndexOutOfRangeException();
+
             LinkedListMember targetMember = _first;
 
             for (int i = 0; i < index; i++)
