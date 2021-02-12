@@ -10,20 +10,15 @@ namespace MyLinkedList
 
         private LinkedListMember _first;
 
-        private void InitFirst(LinkedListMember newFirst)
-        {
-            _first = newFirst;
-            _first.SetPrev(null);
-            _first.SetNext(null);
-        }
-
         public void Print()
         {
             Console.Write("{ ");
 
-            for (int i = 0; i < _size; i++)
+            LinkedListMember currentMember = _first;
+            while (currentMember != null)
             {
-                Console.Write(GetMemberData(i) + " ");
+                Console.Write(currentMember.GetData() + " ");
+                currentMember = currentMember.GetNext();
             }
 
             Console.WriteLine("}");
@@ -37,7 +32,9 @@ namespace MyLinkedList
 
             if (_size == 0)
             {
-                InitFirst(newMember);
+                _first = newMember;
+                _first.SetPrev(null);
+                _first.SetNext(null);
             }
             else if (index == 0)
             {
@@ -138,11 +135,6 @@ namespace MyLinkedList
             return GetMember(index).GetData();
         }
 
-        public int GetSize()
-        {
-            return _size;
-        }
-
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
@@ -150,7 +142,7 @@ namespace MyLinkedList
 
         public IEnumerator<int> GetEnumerator()
         {
-            return new LinkedListEnum(this);
+            return new LinkedListEnum(_first);
         }
 
         public int this[int index]

@@ -2,29 +2,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using System.Transactions;
 
 namespace MyLinkedList
 {
     class LinkedListEnum : IEnumerator<int>
     {
-        private readonly LinkedList _list;
-        private int _position = -1;
+        private LinkedListMember _currentMember;
+        private LinkedListMember _nextMember;
 
-        public LinkedListEnum(LinkedList list)
+        public LinkedListEnum(LinkedListMember firstMember)
         {
-            _list = list;
+            _currentMember = null;
+            _nextMember = firstMember;
         }
 
         public void Reset()
         {
-            _position = -1;
+            while (_currentMember.GetPrev() != null)
+            {
+                _currentMember = _currentMember.GetPrev();
+            }
+
+            _nextMember = _currentMember;
+            _currentMember = null;
         }
 
         public bool MoveNext()
         {
-            _position++;
+            _currentMember = _nextMember;
+            if (_currentMember != null) _nextMember = _nextMember.GetNext();
 
-            return (_position < _list.GetSize());
+            return _currentMember != null;
         }
 
         public void Dispose()
@@ -36,7 +45,7 @@ namespace MyLinkedList
         {
             get
             {
-                return _list[_position];
+                return _currentMember.GetData();
             }
         }
 
