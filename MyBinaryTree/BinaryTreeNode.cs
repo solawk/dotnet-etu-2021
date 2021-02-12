@@ -172,8 +172,6 @@ namespace MyBinaryTree
         {
             SetKey(node.GetKey());
             SetValue(node.GetValue());
-            SetChild(node.GetChild(true), true);
-            SetChild(node.GetChild(false), false);
         }
 
         public void Remove(int key)
@@ -193,10 +191,9 @@ namespace MyBinaryTree
             bool isThisALeftChild = this == _parent.GetChild(true);
 
             // No children case
+
             if (GetChild(true) == null && GetChild(false) == null)
             {
-                Console.WriteLine("No children case");
-
                 if (isThisALeftChild)
                 {
                     _parent.SetChild(null, true);
@@ -210,23 +207,60 @@ namespace MyBinaryTree
             }
 
             // One child case
-            Console.WriteLine("One child case");
-
-            if (GetChild(true) != null)
+            
+            if (GetChild(true) == null || GetChild(false) == null)
             {
-                _parent.SetChild(GetChild(true), isThisALeftChild);
-                GetChild(true).SetParent(_parent);
-                return;
-            }
+                if (GetChild(true) != null)
+                {
+                    _parent.SetChild(GetChild(true), isThisALeftChild);
+                    GetChild(true).SetParent(_parent);
+                    return;
+                }
 
-            if (GetChild(false) != null)
-            {
-                _parent.SetChild(GetChild(false), isThisALeftChild);
-                GetChild(false).SetParent(_parent);
-                return;
+                if (GetChild(false) != null)
+                {
+                    _parent.SetChild(GetChild(false), isThisALeftChild);
+                    GetChild(false).SetParent(_parent);
+                    return;
+                }
             }
 
             // Both children case
+
+            // Finding the successor
+            BinaryTreeNode successorNode = _rightChild;
+            while (successorNode.GetChild(true) != null)
+            {
+                successorNode = successorNode.GetChild(true);
+            }
+
+            CopyFrom(successorNode);
+
+            // If the successor has no children
+            if (successorNode.GetChild(true) == null && successorNode.GetChild(false) == null)
+            {
+                if (successorNode == _rightChild)
+                {
+                    SetChild(null, false);
+                }
+                else
+                {
+                    successorNode.GetParent().SetChild(null, true);
+                }
+
+                return;
+            }
+
+            // The successor has a right child
+            if (successorNode == _rightChild)
+            {
+                SetChild(successorNode.GetChild(false), false);
+            }
+            else
+            {
+                successorNode.GetParent().SetChild(successorNode.GetChild(false), true);
+                successorNode.GetChild(false).SetParent(successorNode.GetParent());
+            }
         }
     }
 }

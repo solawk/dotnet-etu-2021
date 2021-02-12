@@ -7,6 +7,7 @@ namespace MyBinaryTree
         static void Main(string[] args)
         {
             BinaryTree MyTree = new BinaryTree();
+            Random rand = new Random();
 
             string answer = null;
 
@@ -39,6 +40,13 @@ namespace MyBinaryTree
                         Console.Write("Key: ");
                         key = int.Parse(Console.ReadLine());
                         MyTree.Remove(key);
+                        break;
+
+                    case "random":
+                        for (int i = 0; i < 10; i++)
+                        {
+                            MyTree.Add(rand.Next(0, 1000), rand.Next(0, 1000).ToString());
+                        }
                         break;
                 }
             }
