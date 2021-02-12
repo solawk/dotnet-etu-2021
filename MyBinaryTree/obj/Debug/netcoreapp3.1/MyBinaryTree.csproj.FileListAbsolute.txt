@@ -1,0 +1,13 @@
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\bin\Debug\netcoreapp3.1\MyBinaryTree.exe
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\bin\Debug\netcoreapp3.1\MyBinaryTree.deps.json
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\bin\Debug\netcoreapp3.1\MyBinaryTree.runtimeconfig.json
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\bin\Debug\netcoreapp3.1\MyBinaryTree.runtimeconfig.dev.json
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\bin\Debug\netcoreapp3.1\MyBinaryTree.dll
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\bin\Debug\netcoreapp3.1\MyBinaryTree.pdb
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.csprojAssemblyReference.cache
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.AssemblyInfoInputs.cache
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.AssemblyInfo.cs
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.csproj.CoreCompileInputs.cache
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.dll
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.pdb
+E:\Education\8Sem\dotNetRepo\dotnet-etu-2021\MyBinaryTree\obj\Debug\netcoreapp3.1\MyBinaryTree.genruntimeconfig.cache

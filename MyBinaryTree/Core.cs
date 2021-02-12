@@ -6,7 +6,42 @@ namespace MyBinaryTree
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            BinaryTree MyTree = new BinaryTree();
+
+            string answer = null;
+
+            while (answer != "quit")
+            {
+                int key;
+                string value;
+
+                MyTree.Print();
+                Console.Write("Command: ");
+                answer = Console.ReadLine();
+
+                switch (answer)
+                {
+                    case "add":
+                        Console.Write("Key: ");
+                        key = int.Parse(Console.ReadLine());
+                        Console.Write("Value: ");
+                        value = Console.ReadLine();
+                        MyTree.Add(key, value);
+                        break;
+
+                    case "search":
+                        Console.Write("Key: ");
+                        key = int.Parse(Console.ReadLine());
+                        MyTree.Search(key);
+                        break;
+
+                    case "remove":
+                        Console.Write("Key: ");
+                        key = int.Parse(Console.ReadLine());
+                        MyTree.Remove(key);
+                        break;
+                }
+            }
         }
     }
 }
