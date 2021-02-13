@@ -4,4 +4,4 @@
 
 Связный список - MyLinkedList - Готов <br>
 Бинарное дерево - MyBinaryTree - Готов <br>
-Сортировка вставками - MyInsertionSort - Не начат <br>
+Сортировка вставками - MyInsertionSort - Готов <br>
