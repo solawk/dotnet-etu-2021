@@ -8,8 +8,8 @@
 - string принадлежность - affiliation
 - Body местонахождение - refBody
 - DateTime дата запуска - launchDate
-- decimal осталось ускорения (в м/с) - dv
-2. Небесное тело - Body
+- decimal осталось ускорения (в м/с) - dV
+2. Небесное тело (Celestial Body) - Body
 - string название - name
 - double радиус (в километрах) - radius
 - decimal большая полуось орбиты (в километрах) - sma
