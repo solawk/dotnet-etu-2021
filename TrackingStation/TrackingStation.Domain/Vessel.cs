@@ -1,17 +1,20 @@
 ﻿using System;
+using TrackingStation.Domain.Contract;
 
 namespace TrackingStation.Domain
 {
-    public class Vessel
+    public class Vessel : IBodyContainer
     {
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public string affiliation { get; set; }
+        public string Affiliation { get; set; }
 
-        public Location location { get; set; }
+        public Body RefBody { get; set; }
 
-        public DateTime launchDate { get; set; }
+        public DateTime LaunchDate { get; set; }
 
-        public decimal dv { get; set; }
+        public decimal DV { get; set; }
+
+        string? IBodyContainer.BodyName => RefBody.Name;
     }
 }

@@ -12,5 +12,9 @@
     <PackageReference Include="NUnit" Version="3.13.1" />
     <PackageReference Include="NUnit.Console" Version="3.12.0" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\TrackingStation.Domain\TrackingStation.Domain.csproj" />
+  </ItemGroup>
 
 </Project>

@@ -2,10 +2,10 @@
 {
     public class Body
     {
-        public string name { get; set; }
+        public string Name { get; set; }
 
-        public double radius { get; set; }
+        public double Radius { get; set; }
 
-        public decimal sma { get; set; }
+        public decimal SMA { get; set; }
     }
 }
