@@ -26,9 +26,9 @@ namespace TrackingStation.DataAccess.Context
 
             modelBuilder.Entity<Vessel>(entity =>
             {
-                entity.Property(v => v.name).IsRequired();
+                entity.Property(v => v.Name).IsRequired();
 
-                entity.HasOne(b => b.refBody)
+                entity.HasOne(b => b.RefBody)
                 .WithMany(v => v.Vessel);
 
                 //entity.HasConstraintName("FK_Vessel_Body");

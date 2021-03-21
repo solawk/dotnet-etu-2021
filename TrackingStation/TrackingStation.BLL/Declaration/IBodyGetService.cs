@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using TrackingStation.Domain;
+using TrackingStation.Domain.Contract;
 
 namespace TrackingStation.BLL.Declaration
 {
-    interface IBodyGetService
+    public interface IBodyGetService
     {
-        Task ValidateAsync();
+        public Task ValidateAsync(IBodyContainer bodyContainer);
     }
 }

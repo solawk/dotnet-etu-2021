@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TrackingStation.Domain.Contract;
 
 namespace TrackingStation.Domain.Model
 {
-    public class VesselUpdateModel
+    public class VesselUpdateModel : IVesselIdentity, IBodyContainer
     {
         public string Name { get; set; }
 

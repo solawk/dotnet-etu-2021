@@ -2,17 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using TrackingStation.BLL.Declaration;
 using TrackingStation.Domain;
 using TrackingStation.Domain.Model;
+using TrackingStation.BLL.Declaration;
+using TrackingStation.DataAccess.Declaration;
 
 namespace TrackingStation.BLL.Implementation
 {
     class VesselUpdateService : IVesselUpdateService
     {
-        public Task<Vessel> UpdateAsync(VesselUpdateModel vessel)
+        private IVesselDataAccess VesselDataAccess { get; }
+        private IBodyGetService BodyGetService { get; }
+
+        public VesselUpdateService(IVesselDataAccess vesselDataAccess, IBodyGetService bodyGetService)
         {
-            return null;
+            VesselDataAccess = vesselDataAccess;
+            BodyGetService = bodyGetService;
+        }
+
+        public async Task<Vessel> UpdateAsync(VesselUpdateModel vessel)
+        {
+            await BodyGetService.ValidateAsync(vessel);
+
+            return await VesselDataAccess.UpdateAsync(vessel);
         }
     }
 }
