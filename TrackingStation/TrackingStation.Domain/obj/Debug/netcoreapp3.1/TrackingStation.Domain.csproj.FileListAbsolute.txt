@@ -2,3 +2,8 @@ E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\obj\Debug\netcor
 E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\obj\Debug\netcoreapp3.1\TrackingStation.Domain.AssemblyInfoInputs.cache
 E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\obj\Debug\netcoreapp3.1\TrackingStation.Domain.AssemblyInfo.cs
 E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\obj\Debug\netcoreapp3.1\TrackingStation.Domain.csproj.CoreCompileInputs.cache
+E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\bin\Debug\netcoreapp3.1\TrackingStation.Domain.deps.json
+E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\bin\Debug\netcoreapp3.1\TrackingStation.Domain.dll
+E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\bin\Debug\netcoreapp3.1\TrackingStation.Domain.pdb
+E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\obj\Debug\netcoreapp3.1\TrackingStation.Domain.dll
+E:\Education\8Sem\dotNet\TrackingStation\TrackingStation.Domain\obj\Debug\netcoreapp3.1\TrackingStation.Domain.pdb

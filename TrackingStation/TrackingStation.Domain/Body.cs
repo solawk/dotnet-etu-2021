@@ -6,6 +6,6 @@
 
         public double Radius { get; set; }
 
-        public decimal SMA { get; set; }
+        public double SMA { get; set; }
     }
 }

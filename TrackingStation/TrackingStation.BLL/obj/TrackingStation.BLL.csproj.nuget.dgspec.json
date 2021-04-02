@@ -141,17 +141,17 @@
               "target": "Package",
               "version": "[5.0.4, )"
             },
-            "Moq": {
+            "Microsoft.EntityFrameworkCore.Design": {
               "target": "Package",
-              "version": "[4.16.1, )"
+              "version": "[5.0.4, )"
             },
-            "NUnit": {
+            "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[3.13.1, )"
+              "version": "[5.0.4, )"
             },
-            "NUnit.Console": {
+            "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
-              "version": "[3.12.0, )"
+              "version": "[5.0.4, )"
             }
           },
           "imports": [
