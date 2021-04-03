@@ -49,9 +49,9 @@ namespace TrackingStation.BLL.Implementation
             return VesselDataAccess.GetAsync(vesselId);
         }
 
-        public Task<Vessel> Update(IVesselIdentity vesselId, VesselModel newVessel)
+        public Task<Vessel> Update(VesselModel vessel)
         {
-            return VesselDataAccess.UpdateAsync(vesselId, newVessel);
+            return VesselDataAccess.UpdateAsync(vessel);
         }
 
         public Task<Vessel> Delete(IVesselIdentity vesselId)

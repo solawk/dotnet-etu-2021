@@ -24,8 +24,26 @@ namespace TrackingStation.DataAccess.Implementation
             Mapper = mapper;
         }
 
+        public void ValidateNullName(BodyModel body)
+        {
+            if (body.Name == null)
+            {
+                throw new Exception(nameof(body.Name) + " cannot be null!");
+            }
+        }
+
+        public async Task ValidateNoVessels(IBodyContainer bodyContainer)
+        {
+            if (await Context.Vessel.FirstOrDefaultAsync(v => v.BodyName == bodyContainer.BodyName) != null)
+            {
+                throw new Exception($"Body {bodyContainer.BodyName} has vessels!");
+            }
+        }
+
         public async Task<Body> InsertAsync(BodyModel body)
         {
+            ValidateNullName(body);
+
             var result = await Context.AddAsync(Mapper.Map<BodyEntity>(body));
 
             await Context.SaveChangesAsync();
@@ -53,18 +71,17 @@ namespace TrackingStation.DataAccess.Implementation
             return bodyContainer.BodyName != null ? Mapper.Map<Body>(await Get(bodyContainer)) : null;
         }     
 
-        public async Task<Body> UpdateAsync(IBodyContainer body, BodyModel newBody)
+        public async Task<Body> UpdateAsync(BodyModel body)
         {
-            var entity = await Get(body);
+            var entity = await Get(new VesselModel { BodyName = body.Name });
 
             if (entity == null)
             {
                 throw new ArgumentNullException("Body not found");
             }
 
-            entity.Name = newBody.Name;
-            entity.Radius = newBody.Radius;
-            entity.SMA = newBody.SMA;
+            entity.Radius = body.Radius;
+            entity.SMA = body.SMA;
 
             await Context.SaveChangesAsync();
 
@@ -73,6 +90,8 @@ namespace TrackingStation.DataAccess.Implementation
 
         public async Task<Body> DeleteAsync(IBodyContainer body)
         {
+            await ValidateNoVessels(body);
+
             var entity = Context.Body.Remove(await Get(body)).Entity;
 
             await Context.SaveChangesAsync();

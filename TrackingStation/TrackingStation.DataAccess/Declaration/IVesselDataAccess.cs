@@ -12,11 +12,13 @@ namespace TrackingStation.DataAccess.Declaration
     {
         public Task<Vessel> InsertAsync(VesselModel vessel);
 
+        public Task ValidateBody(VesselModel vessel);
+
         public Task<IEnumerable<Vessel>> GetAsync();
 
         public Task<Vessel> GetAsync(IVesselIdentity vesselId);
 
-        public Task<Vessel> UpdateAsync(IVesselIdentity vesselId, VesselModel vessel);
+        public Task<Vessel> UpdateAsync(VesselModel vessel);
 
         public Task<Vessel> DeleteAsync(IVesselIdentity vesselId);
     }

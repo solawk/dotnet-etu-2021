@@ -35,8 +35,10 @@ namespace TrackingStation.WebAPI
             services.AddAutoMapper(typeof(Startup));
 
             services.Add(new ServiceDescriptor(typeof(IVesselServant), typeof(VesselServant), ServiceLifetime.Scoped));
+            services.Add(new ServiceDescriptor(typeof(IBodyServant), typeof(BodyServant), ServiceLifetime.Scoped));
 
             services.Add(new ServiceDescriptor(typeof(IVesselDataAccess), typeof(VesselDataAccess), ServiceLifetime.Transient));
+            services.Add(new ServiceDescriptor(typeof(IBodyDataAccess), typeof(BodyDataAccess), ServiceLifetime.Transient));
 
             services.AddDbContext<DataAccess.Context.DataContext>();
         }

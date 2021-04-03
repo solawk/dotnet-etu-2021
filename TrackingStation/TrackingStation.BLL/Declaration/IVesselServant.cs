@@ -18,7 +18,7 @@ namespace TrackingStation.BLL.Declaration
 
         public Task<Vessel> Read(IVesselIdentity vesselId);
 
-        public Task<Vessel> Update(IVesselIdentity vesselId, VesselModel newVessel);
+        public Task<Vessel> Update(VesselModel vessel);
 
         public Task<Vessel> Delete(IVesselIdentity vesselId);
     }

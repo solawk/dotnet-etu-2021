@@ -19,21 +19,6 @@ namespace TrackingStation.BLL.Implementation
             BodyDataAccess = bodyDataAccess;
         }
 
-        public async Task Validate(IBodyContainer bodyContainer)
-        {
-            if (bodyContainer == null)
-            {
-                throw new ArgumentNullException("Body Container is null");
-            }
-
-            Body body = await Read(bodyContainer);
-
-            if (bodyContainer.BodyName != null && body == null)
-            {
-                throw new InvalidOperationException("No body with name " + bodyContainer.BodyName);
-            }
-        }
-
         public Task<Body> Create(BodyModel body)
         {
             return BodyDataAccess.InsertAsync(body);
@@ -49,9 +34,9 @@ namespace TrackingStation.BLL.Implementation
             return BodyDataAccess.GetAsync(bodyId);
         }
 
-        public Task<Body> Update(IBodyContainer bodyId, BodyModel newBody)
+        public Task<Body> Update(BodyModel body)
         {
-            return BodyDataAccess.UpdateAsync(bodyId, newBody);
+            return BodyDataAccess.UpdateAsync(body);
         }
 
         public Task<Body> Delete(IBodyContainer bodyId)

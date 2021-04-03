@@ -24,8 +24,18 @@ namespace TrackingStation.DataAccess.Implementation
             Mapper = mapper;
         }
 
+        public async Task ValidateBody(VesselModel vessel)
+        {
+            if (await Context.Body.FirstOrDefaultAsync(b => b.Name == vessel.BodyName) == null)
+            {
+                throw new Exception($"Body {vessel.BodyName} of {vessel.Name} doesn't exist!");
+            }
+        }
+
         public async Task<Vessel> InsertAsync(VesselModel vessel)
         {
+            await ValidateBody(vessel);
+
             var result = await Context.AddAsync(Mapper.Map<VesselEntity>(vessel));
 
             try
@@ -60,13 +70,19 @@ namespace TrackingStation.DataAccess.Implementation
             return Mapper.Map<Vessel>(await Get(vesselId));
         }
 
-        public async Task<Vessel> UpdateAsync(IVesselIdentity vesselId, VesselModel vessel)
+        public async Task<Vessel> UpdateAsync(VesselModel vessel)
         {
-            VesselEntity entity = await Get(vesselId);
+            await ValidateBody(vessel);
 
-            entity.Name = vessel.Name;
-            entity.Affiliation = vessel.Affiliation;
+            VesselEntity entity = await Get(vessel);
+
+            if (entity == null)
+            {
+                throw new Exception("This vessel doesn't exist!");
+            }
+
             entity.LaunchDate = vessel.LaunchDate;
+            entity.Affiliation = vessel.Affiliation;
             entity.BodyName = vessel.BodyName;
 
             Context.Update(entity);
@@ -78,7 +94,14 @@ namespace TrackingStation.DataAccess.Implementation
 
         public async Task<Vessel> DeleteAsync(IVesselIdentity vesselId)
         {
-            VesselEntity entity = Context.Vessel.Remove(await Get(vesselId)).Entity;
+            VesselEntity removing = await Get(vesselId);
+
+            if (removing == null)
+            {
+                throw new Exception("This vessel doesn't exist!");
+            }
+
+            VesselEntity entity = Context.Vessel.Remove(removing).Entity;
 
             await Context.SaveChangesAsync();
 
