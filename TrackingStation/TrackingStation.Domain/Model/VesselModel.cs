@@ -14,5 +14,9 @@ namespace TrackingStation.Domain.Model
         public DateTime LaunchDate { get; set; }
 
         public string? BodyName { get; set; }
+
+        public double DV { get; set; }
+
+        public int FlightState { get; set; }
     }
 }

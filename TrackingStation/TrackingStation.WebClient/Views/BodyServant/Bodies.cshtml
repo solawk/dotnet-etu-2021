@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BodyModel>
+    @{
+        ViewData["Title"] = "Bodies";
+    }
+
+    <tr class="text-center">
+        <h1 class="display-4">Bodies</h1>
+        <table>
+            <tr>
+                <td style="vertical-align:middle;text-align: left;">
+                    <h3>Body</h3>
+                </td>
+                <td style="vertical-align:middle;text-align: center;">
+                    <h3>Radius (km)</h3>
+                </td>
+            </tr>
+            @foreach (var b in this.Model)
+            {
+                <tr>
+                    <td style="vertical-align:middle;text-align: left;">
+                        <img src="https://wiki.kerbalspaceprogram.com/images/thumb/e/e1/Eve_map.png/270px-Eve_map.png"
+                             style="max-width: 30%;filter:hue-rotate(@(b.Color % 1000)deg);" />
+                        &nbsp;&nbsp;&nbsp;@b.BodyName
+                    </td>
+                    <td style="vertical-align:middle;text-align: center;">
+                        @b.Radius
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>

@@ -26,9 +26,9 @@ namespace TrackingStation.DataAccess.Implementation
 
         public void ValidateNullName(BodyModel body)
         {
-            if (body.Name == null)
+            if (body.BodyName == null)
             {
-                throw new Exception(nameof(body.Name) + " cannot be null!");
+                throw new Exception(nameof(body.BodyName) + " cannot be null!");
             }
         }
 
@@ -58,7 +58,7 @@ namespace TrackingStation.DataAccess.Implementation
                 throw new ArgumentNullException("Body is null");
             }
 
-            return await Context.Body.FirstOrDefaultAsync(b => b.Name == body.BodyName);
+            return await Context.Body.FirstOrDefaultAsync(b => b.BodyName == body.BodyName);
         }
 
         public async Task<IEnumerable<Body>> GetAsync()
@@ -73,7 +73,7 @@ namespace TrackingStation.DataAccess.Implementation
 
         public async Task<Body> UpdateAsync(BodyModel body)
         {
-            var entity = await Get(new VesselModel { BodyName = body.Name });
+            var entity = await Get(new VesselModel { BodyName = body.BodyName });
 
             if (entity == null)
             {
@@ -82,6 +82,10 @@ namespace TrackingStation.DataAccess.Implementation
 
             entity.Radius = body.Radius;
             entity.SMA = body.SMA;
+            entity.Type = body.Type;
+            entity.Color = body.Color;
+            entity.V1 = body.V1;
+            entity.V2 = body.V2;
 
             await Context.SaveChangesAsync();
 

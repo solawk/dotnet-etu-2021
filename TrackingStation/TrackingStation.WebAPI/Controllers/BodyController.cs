@@ -43,7 +43,7 @@ namespace TrackingStation.WebAPI.Controllers
         {
             Logger.LogTrace($"Get {bodyName} invoked");
 
-            Domain.Body Body = await BodyBL.Read(new VesselModel { BodyName = bodyName });
+            Domain.Body Body = await BodyBL.Read(new BodyModel { BodyName = bodyName });
 
             return Body;
         }
@@ -52,7 +52,7 @@ namespace TrackingStation.WebAPI.Controllers
         [Route("")]
         public async Task<Domain.Body> Put(BodyModel putBody)
         {
-            Logger.LogTrace($"Put {putBody.Name} invoked");
+            Logger.LogTrace($"Put {putBody.BodyName} invoked");
 
             Domain.Body Body = await BodyBL.Create(putBody);
 
@@ -63,7 +63,7 @@ namespace TrackingStation.WebAPI.Controllers
         [Route("")]
         public async Task<Domain.Body> Patch(BodyModel putBody)
         {
-            Logger.LogTrace($"Patch {putBody.Name} invoked");
+            Logger.LogTrace($"Patch {putBody.BodyName} invoked");
 
             Domain.Body Body = await BodyBL.Update(putBody);
 
@@ -76,7 +76,7 @@ namespace TrackingStation.WebAPI.Controllers
         {
             Logger.LogTrace($"Delete {bodyName} invoked");
 
-            Domain.Body Body = await BodyBL.Delete(new VesselModel { BodyName = bodyName });
+            Domain.Body Body = await BodyBL.Delete(new BodyModel { BodyName = bodyName });
 
             return Body;
         }

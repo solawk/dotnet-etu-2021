@@ -33,7 +33,7 @@ namespace TrackingStation.BLL.UnitTests
         public async Task CreateBody_NullName_ThrowsException()
         {
             Fixture fixture = new Fixture();
-            BodyModel body = new BodyModel { Name = null };
+            BodyModel body = new BodyModel { BodyName = null };
             var exceptionMessage = fixture.Create<string>();
 
             var BodyDA = new Mock<IBodyDataAccess>();

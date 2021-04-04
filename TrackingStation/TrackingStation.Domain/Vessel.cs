@@ -13,8 +13,10 @@ namespace TrackingStation.Domain
 
         public DateTime LaunchDate { get; set; }
 
-        public decimal DV { get; set; }
+        public double DV { get; set; }
 
-        string? IBodyContainer.BodyName => RefBody.Name;
+        public int FlightState { get; set; }
+
+        string? IBodyContainer.BodyName => RefBody.BodyName;
     }
 }

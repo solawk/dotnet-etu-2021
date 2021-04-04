@@ -26,7 +26,7 @@ namespace TrackingStation.DataAccess.Implementation
 
         public async Task ValidateBody(VesselModel vessel)
         {
-            if (await Context.Body.FirstOrDefaultAsync(b => b.Name == vessel.BodyName) == null)
+            if (await Context.Body.FirstOrDefaultAsync(b => b.BodyName == vessel.BodyName) == null)
             {
                 throw new Exception($"Body {vessel.BodyName} of {vessel.Name} doesn't exist!");
             }
@@ -81,9 +81,11 @@ namespace TrackingStation.DataAccess.Implementation
                 throw new Exception("This vessel doesn't exist!");
             }
 
-            entity.LaunchDate = vessel.LaunchDate;
+            if (vessel.LaunchDate != null) entity.LaunchDate = vessel.LaunchDate;
             entity.Affiliation = vessel.Affiliation;
             entity.BodyName = vessel.BodyName;
+            entity.DV = vessel.DV;
+            entity.FlightState = vessel.FlightState;
 
             Context.Update(entity);
 

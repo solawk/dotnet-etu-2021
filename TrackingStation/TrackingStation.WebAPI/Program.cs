@@ -13,6 +13,7 @@ namespace TrackingStation.WebAPI
     {
         public static void Main(string[] args)
         {
+            DataAccess.Context.DataContext dataContext = new DataAccess.Context.DataContext();
             CreateHostBuilder(args).Build().Run();
         }
 

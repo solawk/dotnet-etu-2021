@@ -13,6 +13,8 @@ namespace TrackingStation.DataAccess.Entity
         public string Name { get; set; }
         public string Affiliation { get; set; }
         public DateTime LaunchDate { get; set; }
+        public double DV { get; set; }
+        public int FlightState { get; set; }
         public string? BodyName { get; set; }
 
         [ForeignKey("BodyName")]

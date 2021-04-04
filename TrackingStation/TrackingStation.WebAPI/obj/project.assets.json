@@ -6436,6 +6436,7 @@
     ".NETCoreApp,Version=v3.1": [
       "AutoMapper >= 10.1.1",
       "AutoMapper.Extensions.Microsoft.DependencyInjection >= 8.1.1",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.4",
       "TrackingStation.BLL >= 1.0.0",
       "TrackingStation.DataAccess >= 1.0.0",
       "TrackingStation.Domain >= 1.0.0"
@@ -6501,6 +6502,10 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": {
             "target": "Package",
             "version": "[8.1.1, )"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "[5.0.4, )"
           }
         },
         "imports": [
