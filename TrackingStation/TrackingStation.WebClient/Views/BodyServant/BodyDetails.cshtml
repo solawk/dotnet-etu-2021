@@ -1,0 +1,162 @@
+﻿@model BodyModel
+@{
+    ViewData["Title"] = $"{this.Model.BodyName}";
+}
+
+<div class="centerDiv">
+    <h1>
+        @this.Model.BodyName&nbsp;
+        <a href="/BodyServant/BodyEdit?bodyName=@this.Model.BodyName">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png" style="height: 1em;" />
+        </a>
+        <a href="/BodyServant/BodyDelete?bodyName=@this.Model.BodyName">
+            <img src="https://icons-for-free.com/iconfiles/png/512/delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588.png" style="height: 1em;" />
+        </a>
+    </h1>
+</div>
+<table>
+    <tr class="trNoBorders">
+        <td rowspan="5">
+            @{
+                switch (this.Model.Type)
+                {
+                    case 0: <img src="https://freepngimg.com/thumb/space/24439-3-space-planet-free-download.png"
+                                 style="max-width: 100%;filter:hue-rotate(@(this.Model.Color)deg);" />
+                        break;
+                    case 1: <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3373176e-a294-4ce2-b180-d652cd8c9c03/d4x69ef-6411312f-35ee-4ddf-af71-ea93bdd2e0d5.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMzM3MzE3NmUtYTI5NC00Y2UyLWIxODAtZDY1MmNkOGM5YzAzXC9kNHg2OWVmLTY0MTEzMTJmLTM1ZWUtNGRkZi1hZjcxLWVhOTNiZGQyZTBkNS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.2POGoNVt6GPa4iQCS0TPjaJksO-N4TdXgjHsxeB22VI"
+                                 style="max-width: 100%;filter:hue-rotate(@(this.Model.Color)deg);" />
+                        break;
+                    case 2: <img src="https://www.texturesforplanets.com/images/rendered/Martian400.png"
+                                 style="max-width: 100%;filter:hue-rotate(@(this.Model.Color)deg);" />
+                        break;
+                    case 3: <img src="https://www.freeiconspng.com/thumbs/sun/picture-of-real-sun-the-color-of-fire-red-21.png"
+                                 style="max-width: 100%;filter:hue-rotate(@(this.Model.Color)deg);" />
+                        break;
+                }
+            }
+        </td>
+        <td style="width:70%">
+            <b>Radius:</b> @(this.Model.Radius) km
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>Semi-major axis:</b> @(this.Model.SMA) Mm
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>Orbital speed:</b> @(this.Model.V1) m/s
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>Escape velocity:</b> @(this.Model.V2) m/s
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>Vessels:</b> @(this.Model.Vessel.Count)
+        </td>
+    </tr>
+</table>
+@{ if (this.Model.Vessel.Count > 0)
+    {
+        <br />
+        <br />
+        <table>
+            <tr class="trHeader">
+                <td style="width: 34%;">
+                    <h3>Landed</h3>
+                </td>
+                <td style="width: 33%;">
+                    <h3>In orbit</h3>
+                </td>
+                <td style="width: 33%;">
+                    <h3>Escaping</h3>
+                </td>
+            </tr>
+            @{
+                List<int> LandedVessels = new List<int>();
+                List<int> InOrbitVessels = new List<int>();
+                List<int> EscapingVessels = new List<int>();
+
+                for (int i = 0; i < this.Model.Vessel.Count; i++)
+                {
+                    VesselModel v = this.Model.Vessel[i];
+                    switch (v.FlightState)
+                    {
+                        case 0:
+                            LandedVessels.Add(i);
+                            break;
+                        case 1:
+                            InOrbitVessels.Add(i);
+                            break;
+                        case 2:
+                            EscapingVessels.Add(i);
+                            break;
+                    }
+                }
+
+                int LandedLeft = LandedVessels.Count;
+                int InOrbitLeft = InOrbitVessels.Count;
+                int EscapingLeft = EscapingVessels.Count;
+
+                int maxCount = Math.Max(Math.Max(LandedVessels.Count, InOrbitVessels.Count), EscapingVessels.Count);
+            }
+            @for (int i = 0; i < maxCount; i++)
+            {
+                <tr class="trNoBorders">
+                    <td>
+                        @{
+                            if (LandedLeft > 0)
+                            {
+                                <a href="/VesselServant/VesselDetails?vesselName=@this.Model.Vessel[LandedVessels[LandedVessels.Count - LandedLeft]].Name">
+                                    @this.Model.Vessel[LandedVessels[LandedVessels.Count - LandedLeft]].Name
+                                </a>
+                                <br />
+                                string dvColor = "#BADA55";
+                                if (this.Model.Vessel[LandedVessels[LandedVessels.Count - LandedLeft]].DV < this.Model.V2) dvColor = "#F9D561";
+                                if (this.Model.Vessel[LandedVessels[LandedVessels.Count - LandedLeft]].DV < this.Model.V1) dvColor = "#F92B2B";
+                                <text>ΔV </text><span style="color: @dvColor">@this.Model.Vessel[LandedVessels[LandedVessels.Count - LandedLeft]].DV </span><text> m/s</text>
+                                LandedLeft--;
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if (InOrbitLeft > 0)
+                            {
+                                <a href="/VesselServant/VesselDetails?vesselName=@this.Model.Vessel[InOrbitVessels[InOrbitVessels.Count - InOrbitLeft]].Name">
+                                    @this.Model.Vessel[InOrbitVessels[InOrbitVessels.Count - InOrbitLeft]].Name
+                                </a>
+                                <br />
+                                string dvColor = "#BADA55";
+                                if (this.Model.Vessel[InOrbitVessels[InOrbitVessels.Count - InOrbitLeft]].DV < this.Model.V2) dvColor = "#F9D561";
+                                if (this.Model.Vessel[InOrbitVessels[InOrbitVessels.Count - InOrbitLeft]].DV < this.Model.V1) dvColor = "#F92B2B";
+                                <text>ΔV </text><span style="color: @dvColor">@this.Model.Vessel[InOrbitVessels[InOrbitVessels.Count - InOrbitLeft]].DV </span><text> m/s</text>
+                                InOrbitLeft--;
+                            }
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if (EscapingLeft > 0)
+                            {
+                                <a href="/VesselServant/VesselDetails?vesselName=@this.Model.Vessel[EscapingVessels[EscapingVessels.Count - EscapingLeft]].Name">
+                                    @this.Model.Vessel[EscapingVessels[EscapingVessels.Count - EscapingLeft]].Name
+                                </a>
+                                <br />
+                                string dvColor = "#BADA55";
+                                if (this.Model.Vessel[EscapingVessels[EscapingVessels.Count - EscapingLeft]].DV < this.Model.V2) dvColor = "#F9D561";
+                                if (this.Model.Vessel[EscapingVessels[EscapingVessels.Count - EscapingLeft]].DV < this.Model.V1) dvColor = "#F92B2B";
+                                <text>ΔV </text><span style="color: @dvColor">@this.Model.Vessel[EscapingVessels[EscapingVessels.Count - EscapingLeft]].DV </span><text> m/s</text>
+                                EscapingLeft--;
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}

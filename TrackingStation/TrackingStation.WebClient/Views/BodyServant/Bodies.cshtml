@@ -2,30 +2,68 @@
     @{
         ViewData["Title"] = "Bodies";
     }
+    <div class="centerDiv">
+        <h1>
+            Bodies
+            <a href="/BodyServant/BodyNew">
+                <img src="https://image.flaticon.com/icons/png/512/61/61183.png" style="height: 1em;" />
+            </a>
+        </h1>
+    </div>
+    <table>
+        <tr class="trHeader">
+            <td style="width: 25%;">
+                <h3>Body</h3>
+            </td>
+            <td>
+                <h3>Radius (km)</h3>
+            </td>
+            <td>
+                <h3>Semi-major axis (Mm)</h3>
+            </td>
+            <td>
+                <h3>Orbital speed (m/s)</h3>
+            </td>
+            <td>
+                <h3>Escape velocity (m/s)</h3>
+            </td>
+        </tr>
+        @foreach (var b in this.Model)
+        {
+            <tr class="trHoverable">
 
-    <tr class="text-center">
-        <h1 class="display-4">Bodies</h1>
-        <table>
-            <tr>
-                <td style="vertical-align:middle;text-align: left;">
-                    <h3>Body</h3>
+                <td>
+                    @{
+                        switch (b.Type)
+                        {
+                            case 0: <img src="https://freepngimg.com/thumb/space/24439-3-space-planet-free-download.png"
+                                         style="max-width: 30%;filter:hue-rotate(@(b.Color)deg);" />
+                                break;
+                            case 1: <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/3373176e-a294-4ce2-b180-d652cd8c9c03/d4x69ef-6411312f-35ee-4ddf-af71-ea93bdd2e0d5.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMzM3MzE3NmUtYTI5NC00Y2UyLWIxODAtZDY1MmNkOGM5YzAzXC9kNHg2OWVmLTY0MTEzMTJmLTM1ZWUtNGRkZi1hZjcxLWVhOTNiZGQyZTBkNS5wbmcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.2POGoNVt6GPa4iQCS0TPjaJksO-N4TdXgjHsxeB22VI"
+                                         style="max-width: 30%;filter:hue-rotate(@(b.Color)deg);" />
+                                break;
+                            case 2: <img src="https://www.texturesforplanets.com/images/rendered/Martian400.png"
+                                         style="max-width: 30%;filter:hue-rotate(@(b.Color)deg);" />
+                                break;
+                            case 3: <img src="https://www.freeiconspng.com/thumbs/sun/picture-of-real-sun-the-color-of-fire-red-21.png"
+                                         style="max-width: 30%;filter:hue-rotate(@(b.Color)deg);" />
+                                break;
+                        }
+                    }
+                    <br /><a href="/BodyServant/BodyDetails?bodyName=@b.BodyName">@b.BodyName</a>
                 </td>
-                <td style="vertical-align:middle;text-align: center;">
-                    <h3>Radius (km)</h3>
+                <td>
+                    @b.Radius
+                </td>
+                <td>
+                    @b.SMA
+                </td>
+                <td>
+                    @b.V1
+                </td>
+                <td>
+                    @b.V2
                 </td>
             </tr>
-            @foreach (var b in this.Model)
-            {
-                <tr>
-                    <td style="vertical-align:middle;text-align: left;">
-                        <img src="https://wiki.kerbalspaceprogram.com/images/thumb/e/e1/Eve_map.png/270px-Eve_map.png"
-                             style="max-width: 30%;filter:hue-rotate(@(b.Color % 1000)deg);" />
-                        &nbsp;&nbsp;&nbsp;@b.BodyName
-                    </td>
-                    <td style="vertical-align:middle;text-align: center;">
-                        @b.Radius
-                    </td>
-                </tr>
-            }
-        </table>
-    </div>
+        }
+    </table>

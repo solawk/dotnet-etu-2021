@@ -11,8 +11,6 @@ namespace TrackingStation.Domain.Model
 
         public string Affiliation { get; set; }
 
-        public DateTime LaunchDate { get; set; }
-
         public string? BodyName { get; set; }
 
         public double DV { get; set; }

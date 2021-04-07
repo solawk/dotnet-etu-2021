@@ -35,7 +35,7 @@ namespace TrackingStation.DataAccess.Implementation
         public async Task<Vessel> InsertAsync(VesselModel vessel)
         {
             await ValidateBody(vessel);
-
+           
             var result = await Context.AddAsync(Mapper.Map<VesselEntity>(vessel));
 
             try
@@ -72,8 +72,6 @@ namespace TrackingStation.DataAccess.Implementation
 
         public async Task<Vessel> UpdateAsync(VesselModel vessel)
         {
-            await ValidateBody(vessel);
-
             VesselEntity entity = await Get(vessel);
 
             if (entity == null)
@@ -81,7 +79,8 @@ namespace TrackingStation.DataAccess.Implementation
                 throw new Exception("This vessel doesn't exist!");
             }
 
-            if (vessel.LaunchDate != null) entity.LaunchDate = vessel.LaunchDate;
+            await ValidateBody(vessel);
+
             entity.Affiliation = vessel.Affiliation;
             entity.BodyName = vessel.BodyName;
             entity.DV = vessel.DV;
@@ -103,7 +102,7 @@ namespace TrackingStation.DataAccess.Implementation
                 throw new Exception("This vessel doesn't exist!");
             }
 
-            VesselEntity entity = Context.Vessel.Remove(removing).Entity;
+            VesselEntity entity = Context.Vessel.Remove(removing).Entity;          
 
             await Context.SaveChangesAsync();
 

@@ -1,0 +1,55 @@
+﻿@model VesselModel
+@{
+    ViewData["Title"] = $"{this.Model.Name}";
+}
+
+<div class="centerDiv">
+    <h1>
+        @this.Model.Name&nbsp;
+        <a href="/VesselServant/VesselEdit?vesselName=@this.Model.Name">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Edit_icon_%28the_Noun_Project_30184%29.svg/1024px-Edit_icon_%28the_Noun_Project_30184%29.svg.png" style="height: 1em;" />
+        </a>
+        <a href="/VesselServant/VesselDelete?vesselName=@this.Model.Name">
+            <img src="https://icons-for-free.com/iconfiles/png/512/delete+remove+trash+trash+bin+trash+can+icon-1320073117929397588.png" style="height: 1em;" />
+        </a>
+    </h1>
+</div>
+<table>
+    <tr class="trNoBorders">
+        <td rowspan="4">
+            <img src="https://cdn0.iconfinder.com/data/icons/octicons/1024/rocket-512.png"
+                 style="max-width: 100%;" />
+        </td>
+        <td style="width:70%">
+            <b>Affiliation:</b> @(this.Model.Affiliation)
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>Reference Body:</b> <a href="/BodyServant/BodyDetails?bodyName=@(this.Model.RefBody.BodyName)">@(this.Model.RefBody.BodyName)</a>
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>ΔV:</b> @(this.Model.DV) m/s
+        </td>
+    </tr>
+    <tr class="trNoBorders">
+        <td>
+            <b>Flight State:</b>
+            @{ switch (this.Model.FlightState)
+                {
+                    case 0:
+                        <text>Landed</text>
+                        break;
+                    case 1:
+                        <text>In orbit</text>
+                        break;
+                    case 2:
+                        <text>Escaping</text>
+                        break;
+                }
+            }
+        </td>
+    </tr>
+</table>

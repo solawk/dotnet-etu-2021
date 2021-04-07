@@ -58,18 +58,18 @@ namespace TrackingStation.DataAccess.Implementation
                 throw new ArgumentNullException("Body is null");
             }
 
-            return await Context.Body.FirstOrDefaultAsync(b => b.BodyName == body.BodyName);
+            return await Context.Body.Include(b => b.Vessel).FirstOrDefaultAsync(b => b.BodyName == body.BodyName);
         }
 
         public async Task<IEnumerable<Body>> GetAsync()
         {
-            return Mapper.Map<IEnumerable<Body>>(await Context.Body.ToListAsync());
+            return Mapper.Map<IEnumerable<Body>>(await Context.Body.Include(b => b.Vessel).ToListAsync());
         }
 
         public async Task<Body> GetAsync(IBodyContainer bodyContainer)
         {
             return bodyContainer.BodyName != null ? Mapper.Map<Body>(await Get(bodyContainer)) : null;
-        }     
+        }
 
         public async Task<Body> UpdateAsync(BodyModel body)
         {

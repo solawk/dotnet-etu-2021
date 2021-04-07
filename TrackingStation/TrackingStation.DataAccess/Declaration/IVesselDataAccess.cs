@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TrackingStation.DataAccess.Entity;
 using TrackingStation.Domain;
 using TrackingStation.Domain.Contract;
 using TrackingStation.Domain.Model;

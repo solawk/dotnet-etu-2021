@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace TrackingStation.WebAPI.Pages
+namespace TrackingStation.WebClient.Views
 {
-    public class BodyListModel : PageModel
+    public class Bodies : PageModel
     {
         public void OnGet()
         {

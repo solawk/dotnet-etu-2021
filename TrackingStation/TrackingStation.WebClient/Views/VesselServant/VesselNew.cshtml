@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "New Vessel";
+}
+
+<div class="centerDiv">
+    <h1>New Vessel</h1>
+    <form method="post">
+        <table style="text-align:left;">
+            <tr class="trHoverable">
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input required type="text" name="name" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Affiliation:
+                </td>
+                <td>
+                    <input required type="text" name="affiliation" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Reference Body:
+                </td>
+                <td>
+                    <select name="bodyName">
+                        @foreach (var b in this.Model)
+                        {
+                            <!option value="@b.BodyName">@b.BodyName</!option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    ΔV:
+                </td>
+                <td>
+                    <input required type="number" step=any name="dv" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Flight State:
+                </td>
+                <td>
+                    <input checked type="radio" name="flightState" value="0" />Landed
+                    <input type="radio" name="flightState" value="1" />In orbit
+                    <input type="radio" name="flightState" value="2" />Escaping
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

@@ -26,6 +26,7 @@ namespace TrackingStation.WebClient
         {
             services.AddControllersWithViews();
             services.AddHttpClient<IBodyClientServant, BodyClientServant>(client => client.BaseAddress = new Uri("https://localhost:5001"));
+            services.AddHttpClient<IVesselClientServant, VesselClientServant>(client => client.BaseAddress = new Uri("https://localhost:5001"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,13 @@
+﻿@model VesselModel
+@{
+    ViewData["Title"] = $"Delete {this.Model.Name}";
+}
+
+<div class="centerDiv">
+    <h1>Deleting @this.Model.Name</h1>
+    <form method="post">
+        <h2>@this.Model.Name is kil?</h2>
+
+        <input type="submit" value="no">
+    </form>
+</div>

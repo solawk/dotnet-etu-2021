@@ -1,0 +1,70 @@
+﻿@model BodyModel 
+@{
+    ViewData["Title"] = $"Edit {this.Model.BodyName}";
+}
+
+<div class="centerDiv">
+    <h1>Edit @this.Model.BodyName</h1>
+    <form method="post">
+        <table style="text-align:left;">
+            <tr class="trHoverable">
+                <td>
+                    Radius (km):
+                </td>
+                <td>
+                    <input required type="number" step=any name="radius" value=@this.Model.Radius />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    SMA (Mm):
+                </td>
+                <td>
+                    <input required type="number" step=any name="sma" value=@this.Model.SMA />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Orbital speed (m/s):
+                </td>
+                <td>
+                    <input required type="number" step=any name="v1" value=@this.Model.V1 />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Escape velocity (m/s):
+                </td>
+                <td>
+                    <input required type="number" step=any name="v2" value=@this.Model.V2 />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Type:
+                </td>
+                <td>
+                    <input @if (this.Model.Type == 0) { <text> checked</text>} type="radio" name="type" value="0" />Earth-like
+                    <input @if (this.Model.Type == 1) { <text> checked</text>} type="radio" name="type" value="1" />Gas
+                    <input @if (this.Model.Type == 2) { <text> checked</text>} type="radio" name="type" value="2" />Rocky
+                    <input @if (this.Model.Type == 3) { <text> checked</text>} type="radio" name="type" value="3" />Star
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Color:
+                </td>
+                <td>
+                    <input required type="number" step=1 name="color" value=@this.Model.Color />
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

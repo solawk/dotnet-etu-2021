@@ -1,0 +1,64 @@
+﻿@model IEnumerable<VesselModel>
+    @{
+        ViewData["Title"] = "Vessels";
+    }
+    <div class="centerDiv">
+        <h1>
+            Vessels
+            <a href="/VesselServant/VesselNew">
+                <img src="https://image.flaticon.com/icons/png/512/61/61183.png" style="height: 1em;" />
+            </a>
+        </h1>
+    </div>
+    <table>
+        <tr class="trHeader">
+            <td style="width: 25%;">
+                <h3>Vessel</h3>
+            </td>
+            <td>
+                <h3>Affiliation</h3>
+            </td>
+            <td>
+                <h3>Reference Body</h3>
+            </td>
+            <td>
+                <h3>ΔV Remaining (m/s)</h3>
+            </td>
+            <td>
+                <h3>Flight State</h3>
+            </td>
+        </tr>
+        @foreach (var v in this.Model)
+        {
+            <tr class="trHoverable">
+
+                <td>
+                    <a href="/VesselServant/VesselDetails?vesselName=@v.Name">@v.Name</a>
+                </td>
+                <td>
+                    @v.Affiliation
+                </td>
+                <td>
+                    @v.RefBody.BodyName
+                </td>
+                <td>
+                    @v.DV
+                </td>
+                <td>
+                    @{ switch (v.FlightState)
+                        {
+                            case 0:
+                                <text>Landed</text>
+                                break;
+                            case 1:
+                                <text>In orbit</text>
+                                break;
+                            case 2:
+                                <text>Escaping</text>
+                                break;
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </table>

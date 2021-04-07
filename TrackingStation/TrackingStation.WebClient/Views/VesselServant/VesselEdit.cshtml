@@ -1,0 +1,56 @@
+﻿@model TrackingStation.WebClient.Views.VesselEditModel
+@{
+    ViewData["Title"] = $"Edit {this.Model.Vessel.Name}";
+}
+
+<div class="centerDiv">
+    <h1>Edit @this.Model.Vessel.Name</h1>
+    <form method="post">
+        <table style="text-align:left;">
+            <tr class="trHoverable">
+                <td>
+                    Affiliation:
+                </td>
+                <td>
+                    <input required type="text" name="affiliation" value="@this.Model.Vessel.Affiliation" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Reference Body:
+                </td>
+                <td>
+                    <select name="bodyName">
+                        @foreach(var b in this.Model.Bodies)
+                        {
+                            <!option value="@b.BodyName" @(b.BodyName == this.Model.Vessel.RefBody.BodyName ? "selected" : "")>@b.BodyName</!option>
+                        }
+                    </select>
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    ΔV:
+                </td>
+                <td>
+                    <input required type="number" step=any name="dv" value=@this.Model.Vessel.DV />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Flight State:
+                </td>
+                <td>
+                    <input @if (this.Model.Vessel.FlightState == 0) { <text> checked</text>} type="radio" name="flightState" value="0" />Landed
+                    <input @if (this.Model.Vessel.FlightState == 1) { <text> checked</text>} type="radio" name="flightState" value="1" />In orbit
+                    <input @if (this.Model.Vessel.FlightState == 2) { <text> checked</text>} type="radio" name="flightState" value="2" />Escaping
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

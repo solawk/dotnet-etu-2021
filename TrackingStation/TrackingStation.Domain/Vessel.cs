@@ -1,5 +1,6 @@
 ﻿using System;
 using TrackingStation.Domain.Contract;
+using TrackingStation.Domain.Model;
 
 namespace TrackingStation.Domain
 {
@@ -9,9 +10,7 @@ namespace TrackingStation.Domain
 
         public string Affiliation { get; set; }
 
-        public Body RefBody { get; set; }
-
-        public DateTime LaunchDate { get; set; }
+        public BodyModel RefBody { get; set; }
 
         public double DV { get; set; }
 

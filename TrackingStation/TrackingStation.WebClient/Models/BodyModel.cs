@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TrackingStation.WebClient.Models;
 
 namespace TrackingStation.WebClient.Models
 {
@@ -19,5 +20,7 @@ namespace TrackingStation.WebClient.Models
         public int Type { get; set; }
 
         public int Color { get; set; }
+
+        public List<VesselModel> Vessel { get; set; }
     }
 }

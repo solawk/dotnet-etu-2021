@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "New Body";
+}
+
+<div class="centerDiv">
+    <h1>New Body</h1>
+    <form method="post">
+        <table style="text-align:left;">
+            <tr class="trHoverable">
+                <td>
+                    Name:
+                </td>
+                <td>
+                    <input required type="text" name="name" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Radius (km):
+                </td>
+                <td>
+                    <input required type="number" step=any name="radius" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    SMA (Mm):
+                </td>
+                <td>
+                    <input required type="number" step=any name="sma" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Orbital speed (m/s):
+                </td>
+                <td>
+                    <input required type="number" step=any name="v1" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Escape velocity (m/s):
+                </td>
+                <td>
+                    <input required type="number" step=any name="v2" />
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Type:
+                </td>
+                <td>
+                    <input checked type="radio" name="type" value="0" />Earth-like
+                    <input type="radio" name="type" value="1" />Gas
+                    <input type="radio" name="type" value="2" />Rocky
+                    <input type="radio" name="type" value="3" />Star
+                </td>
+            </tr>
+
+            <tr class="trHoverable">
+                <td>
+                    Color:
+                </td>
+                <td>
+                    <input required type="number" step=1 name="color" value="0" />
+                </td>
+            </tr>
+        </table>
+
+        <input type="submit" value="Submit">
+    </form>
+</div>

@@ -9,5 +9,13 @@ namespace TrackingStation.WebClient.Services
     public interface IBodyClientServant
     {
         Task<IEnumerable<BodyModel>> GetAllBodies();
+
+        public Task<BodyModel> GetSpecificBody(string bodyName);
+
+        public Task<BodyModel> AddBody(InputBody newBody);
+
+        public Task<BodyModel> EditBody(InputBody editedBody);
+
+        public Task<BodyModel> DeleteBody(string bodyName);
     }
 }

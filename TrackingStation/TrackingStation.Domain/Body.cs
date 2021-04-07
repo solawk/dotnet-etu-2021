@@ -1,4 +1,7 @@
-﻿namespace TrackingStation.Domain
+﻿using System.Collections.Generic;
+using TrackingStation.Domain.Model;
+
+namespace TrackingStation.Domain
 {
     public class Body
     {
@@ -15,5 +18,7 @@
         public int Type { get; set; }
 
         public int Color { get; set; }
+
+        public List<VesselModel> Vessel { get; set; }
     }
 }
